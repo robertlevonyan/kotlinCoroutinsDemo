@@ -9,8 +9,7 @@ Add following line of code to your module(app) level gradle file
 ```
 
 Starting a simple timer using <i>launch</i> function
-|
-```kotlin
+|```kotlin
     launch(UI) {
       for (i in 10 downTo 0) {
         timer.text = if (i == 0) "Time is out" else "$i"
