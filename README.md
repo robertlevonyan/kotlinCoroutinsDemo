@@ -121,7 +121,7 @@ What we have in result
 
 <img src="https://github.com/robertlevonyan/kotlinCoroutinsDemo/blob/master/Images/kt_channel.jpg" width="300" />
 
-The presentation for this project could be found here
+The presentation of GoNative Tech Conference could be found here<br>
 https://www.slideshare.net/robertlevonyan/kotlin-coroutines-90942327
 
 ## Contact
