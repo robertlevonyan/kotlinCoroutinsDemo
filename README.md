@@ -90,3 +90,43 @@ And that's a result we are getting
 And the result is
 
 <img src="https://github.com/robertlevonyan/kotlinCoroutinsDemo/blob/master/Images/kt_weather.jpg" width="300" />
+
+### Creating a channel 
+
+```kotlin
+    // Channel in Coroutines are used to transfer streams of values
+    // A channel has a suspending <i>send</i> function to send data and suspending <i>receive</i> function to receive it
+    fun showChannel() = async(UI) {
+        // Creating a channel which can send Any type of data
+        val channel = Channel<Any>()
+        launch(UI) {
+            channel.send("My Channel")
+            channel.send(15)
+            channel.send(15F)
+        }
+
+        repeat(3) {
+            delay(1000)
+            launch(UI) {
+                // Displaying the data received from channel
+                val channelValue = channel.receive()
+                channelText.append(channelValue.toString() + " -> "
+                        + channelValue::class.java.canonicalName + "\n")
+            }
+        }
+    }
+```
+
+What we have in result
+
+<img src="https://github.com/robertlevonyan/kotlinCoroutinsDemo/blob/master/Images/kt_channel.jpg" width="300" />
+
+
+## Contact
+
+- **Email**: me@robertlevonyan.com
+- **Website**: https://robertlevonyan.com/
+- **Medium**: https://medium.com/@RobertLevonyan
+- **Twitter**: https://twitter.com/@RobertLevonyan
+- **Facebook**: https://facebook.com/robert.levonyan
+- **Google Play**: https://play.google.com/store/apps/dev?id=5477562049350283357
