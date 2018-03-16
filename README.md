@@ -8,9 +8,8 @@ Add following line of code to your module(app) level gradle file
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.21"
 ```
 
-Starting a simple timer using <i>launch</i> function
+### Starting a simple timer using <i>launch</i> function
 
-|<p>
 ```kotlin
     launch(UI) {
       for (i in 10 downTo 0) {
@@ -19,9 +18,11 @@ Starting a simple timer using <i>launch</i> function
         }
       }
 ```
-</p>
-|<img src="https://github.com/robertlevonyan/kotlinCoroutinsDemo/blob/master/Images/kt_timer.jpg" width="300" />|
-|----------------------------------------------------------------------------------------------|-----------|
 
 And that's a result we are getting
 
+<img src="https://github.com/robertlevonyan/kotlinCoroutinsDemo/blob/master/Images/kt_timer.jpg" width="300" />
+
+### Requesting data from remote server with Retrofite
+
+#### Exemple 1
