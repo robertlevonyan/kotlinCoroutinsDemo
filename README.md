@@ -9,7 +9,7 @@ Add following line of code to your module(app) level gradle file
 ```
 
 Starting a simple timer using <i>launch</i> function
-
+|
 ```kotlin
     launch(UI) {
       for (i in 10 downTo 0) {
@@ -18,3 +18,8 @@ Starting a simple timer using <i>launch</i> function
         }
       }
 ```
+|<img src="https://github.com/robertlevonyan/kotlinCoroutinsDemo/blob/master/Images/kt_timer.jpg" width="500" />|
+|--------------------------------------------------------------------------------------|------------------------|
+
+And that's a result we are getting
+
