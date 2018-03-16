@@ -32,8 +32,10 @@ And that's a result we are getting
     // Getting the weather for any city using suspending <i>async</i> function
     // The ```CommonPool``` is a thread where our coroutine should work
     fun getWeatherAsync(city: String): Deferred<Response<ResponseBody>> = async(CommonPool) {
-        return@async api.getWeather("Yerevan", API_KEY).execute()
+        return@async api.getWeather("Yerevan").execute()
     }
+    
+    ...
     
     // Calling <i>getWeatherAsync</i> in a regular way in launch function, mentioning, that should work
     // in application's UI thread
@@ -44,3 +46,47 @@ And that's a result we are getting
         }
     }
 ```
+
+#### Exemple 2
+
+```kotlin
+    // Let's create a suspending function <i>await</i> on Retrofit's Call future
+    // Inside the function we are calling suspendCancellableCoroutine, which means we are creating
+    // a coroutine function, which we can cancel during it processing
+    suspend fun <T> Call<T>.await(): T = suspendCancellableCoroutine {
+        enqueue(object : Callback<T> {
+            override fun onResponse(call: Call<T>, response: Response<T>) {
+                if (response.isSuccessful) {
+                    // resume is a function of suspendCancellableCoroutine, which resumes suspended coroutine
+                    it.resume(response.body()!!)
+                } else {
+                    // resumeWithException is a function of suspendCancellableCoroutine, 
+                    // which resumes suspended coroutine in case of an error
+                    it.resumeWithException(Throwable("Unsuccessful"))
+                }
+            }
+            
+            override fun onFailure(call: Call<T>, t: Throwable) {
+                it.resumeWithException(t)
+            }
+        })
+    }
+    
+    ...
+    
+    // Get weather in another suspending function
+    suspend fun getWeatherSuspending(city: String): Weather {
+        return api.getWeather("Yerevan").await()
+    }
+    
+    fun getWeather() {
+        launch(UI) {
+            val weather = getWeatherAsync("Yerevan")
+            updateUI(weather.await())
+        }
+    }
+```
+
+And the result is
+
+<img src="https://github.com/robertlevonyan/kotlinCoroutinsDemo/blob/master/Images/kt_weather.jpg" width="300" />
