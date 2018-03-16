@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Coroutines</string>
+    <string name="weather">Check weather</string>
+    <string name="timer_start">Start timer</string>
+    <string name="timer_stop">Stop timer</string>
+    <string name="channel">Channel test</string>
+</resources>
